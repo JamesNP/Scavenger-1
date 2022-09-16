@@ -107,13 +107,33 @@ public class BoardManager : MonoBehaviour
 
     public void SetupScene(int level)
     {
-        BoardSetup();
-        InitialiseList();
-        LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
-        LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);
-        int enemyCount = (int)Mathf.Log(level, 2f);
-        enemyCount += 5;
-        LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
-        Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
+        //BoardSetup();
+        // InitialiseList();
+        // LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
+        // LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);
+        // int enemyCount = (int)Mathf.Log(level, 2f);
+        // enemyCount += 5;
+        // LayoutObjectAtRandom(enemyTiles, enemyCount, enemyCount);
+        // Instantiate(exit, new Vector3(columns - 1, rows - 1, 0f), Quaternion.identity);
+
+        TextAsset levelAsset = Resources.Load("day1") as TextAsset;
+
+        string[] lines = levelAsset.text.Split('\n');
+
+        for (int i = 0; i < lines.Length; i++)
+        {
+            print(lines[i]);
+
+            for (int j = 0; j < lines[i].Length; j++)
+            {
+                if (lines[i][j] == 'X')
+                {
+                    //Wall
+                    GameObject wall = wallTiles[Random.Range(0, wallTiles.Length)];
+                    Instantiate(wall, new Vector3(j - 1, lines.Length - i - 2, 0f), Quaternion.identity);
+                }
+
+            }
+        }
     }
 }
