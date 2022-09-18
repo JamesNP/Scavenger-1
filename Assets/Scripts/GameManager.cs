@@ -71,30 +71,37 @@ public class GameManager : MonoBehaviour
 
     //Initializes the game for each level.
     void InitGame()
-    {
-        //While doingSetup is true the player can't move, prevent player from moving while title card is up.
-        doingSetup = true;
+    {   
+        if (level == 4)
+        {
+            winImage = GameObject.Find("WinImage");
+        }
+        else
+        {
+            //While doingSetup is true the player can't move, prevent player from moving while title card is up.
+            doingSetup = true;
 
-        //Get a reference to our image LevelImage by finding it by name.
-        levelImage = GameObject.Find("LevelImage");
+            //Get a reference to our image LevelImage by finding it by name.
+            levelImage = GameObject.Find("LevelImage");
 
-        //Get a reference to our text LevelText's text component by finding it by name and calling GetComponent.
-        levelText = GameObject.Find("LevelText").GetComponent<Text>();
+            //Get a reference to our text LevelText's text component by finding it by name and calling GetComponent.
+            levelText = GameObject.Find("LevelText").GetComponent<Text>();
 
-        //Set the text of levelText to the string "Day" and append the current level number.
-        levelText.text = "Day " + level;
+            //Set the text of levelText to the string "Day" and append the current level number.
+            levelText.text = "Day " + level;
 
-        //Set levelImage to active blocking player's view of the game board during setup.
-        levelImage.SetActive(true);
+            //Set levelImage to active blocking player's view of the game board during setup.
+            levelImage.SetActive(true);
 
-        //Call the HideLevelImage function with a delay in seconds of levelStartDelay.
-        Invoke("HideLevelImage", levelStartDelay);
+            //Call the HideLevelImage function with a delay in seconds of levelStartDelay.
+            Invoke("HideLevelImage", levelStartDelay);
 
-        //Clear any Enemy objects in our List to prepare for next level.
-        enemies.Clear();
+            //Clear any Enemy objects in our List to prepare for next level.
+            enemies.Clear();
 
-        //Call the SetupScene function of the BoardManager script, pass it current level number.
-        boardScript.SetupScene(level);
+            //Call the SetupScene function of the BoardManager script, pass it current level number.
+            boardScript.SetupScene(level);
+        }
     }
 
 
