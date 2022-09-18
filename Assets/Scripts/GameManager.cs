@@ -75,15 +75,15 @@ public class GameManager : MonoBehaviour
     {   
         if (level == 4)
         {
+            //Display You Win message
             winImage = GameObject.Find("WinImage");
-            //winText = GameObject.Find("WinText").GetComponent<Text>();
             winImage.SetActive(true);
         }
         else
         {
             winImage = GameObject.Find("WinImage");
-            //winText = GameObject.Find("WinText").GetComponent<Text>();
             winImage.SetActive(false);
+
             //While doingSetup is true the player can't move, prevent player from moving while title card is up.
             doingSetup = true;
 
