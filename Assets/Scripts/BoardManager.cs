@@ -132,6 +132,23 @@ public class BoardManager : MonoBehaviour
                     GameObject wall = wallTiles[Random.Range(0, wallTiles.Length)];
                     Instantiate(wall, new Vector3(j - 1, lines.Length - i - 2, 0f), Quaternion.identity);
                 }
+                else if (lines[i][j] == 'F')
+                {
+                    //Food
+                    GameObject food = foodTiles[Random.Range(0, foodTiles.Length)];
+                    Instantiate(food, new Vector3(j - 1, lines.Length - i - 2, 0f), Quaternion.identity);
+                }
+                else if (lines[i][j] == 'E')
+                {
+                    //Enemy
+                    GameObject enemy = enemyTiles[Random.Range(0, enemyTiles.Length)];
+                    Instantiate(enemy, new Vector3(j - 1, lines.Length - i - 2, 0f), Quaternion.identity);
+                }
+                else if (lines[i][j] == 'T')
+                {
+                    //Exit
+                    Instantiate(exit, new Vector3(j - 1, lines.Length - i - 2, 0f), Quaternion.identity); 
+                }
 
             }
         }
